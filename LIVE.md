@@ -37,27 +37,21 @@ there is nothing secret in here (no licence keys, no patient data, no source cod
 
 ---
 
-## Step 3 - Turn on GitHub Pages
+## Step 3 - Turn on GitHub Pages  [done]
 
-On github.com, open your new `meddesk` repository, then:
+Already enabled through the API (branch `main`, folder `/docs`). The site is live:
 
-**Settings** (top of the repo) → **Pages** (left sidebar) → under *Build and deployment*:
+**https://marw1x.github.io/meddesk/**
 
-- Source: **Deploy from a branch**
-- Branch: **main**, folder: **/docs**
-- **Save**
+Repository: **https://github.com/marw1x/meddesk**
 
-Wait about a minute, reload the page, and it shows your address:
-
-```
-https://<your-username>.github.io/meddesk/
-```
-
-**The site is now live.** The download buttons still say "قيد التجهيز" because the files are not up yet.
+The download buttons say "قيد التجهيز" because the installers are not uploaded yet. They stay that way
+until `release.js` uploads a product and flips its `released` flag in `data/downloads.json`, so the site
+can never show a link to a file that is not there.
 
 ---
 
-## Step 4 - Upload the installers
+## Step 4 - Upload the installers  [not started]
 
 Still in `C:\Users\Marwan\meddesk-site`:
 
