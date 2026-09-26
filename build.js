@@ -65,6 +65,7 @@ const linkFor = (p, row) => {
   if (!configured || !row) return null;
   const tag = (DL.tags || {})[p.slug];
   if (!tag) return null;
+  if (!(DL.released || {})[p.slug]) return null; // not uploaded yet: show "coming soon", never a 404
   return `${BASE.replace(/\/$/, '')}/${encodeURIComponent(tag)}/${encodeURIComponent(row.file)}`;
 };
 

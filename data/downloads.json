@@ -1,13 +1,13 @@
 {
   "_help": [
-    "Where the installer files are hosted. Until baseUrl is filled in, the site renders the download",
-    "buttons in a 'coming soon' state instead of shipping dead links.",
+    "Where the installer files live, and which ones are actually uploaded yet.",
     "",
-    "With GitHub Releases, baseUrl is:  https://github.com/<user>/<repo>/releases/download",
-    "and each tag below is the release tag you created for that product.",
-    "The final link becomes:  <baseUrl>/<tag>/<file name>",
+    "baseUrl is normally left empty: build.js derives it from the git remote.",
+    "tags = the GitHub release tag per product; it must end with the installer's version number.",
+    "released = set to true by release.js once that product's files are really on GitHub.",
+    "A product with released:false shows a 'coming soon' button instead of a dead link.",
     "",
-    "See README.md section 3 for the click-by-click setup."
+    "See LIVE.md."
   ],
   "baseUrl": "",
   "tags": {
@@ -15,5 +15,11 @@
     "gynodesk": "gynodesk-v1.0.24",
     "clinic-desk": "clinic-desk-v1.0.0",
     "clinic-manager": "clinic-manager-v2.0.0"
+  },
+  "released": {
+    "asnaan": false,
+    "gynodesk": false,
+    "clinic-desk": false,
+    "clinic-manager": false
   }
 }

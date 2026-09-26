@@ -93,7 +93,12 @@ for (const p of S.products) {
     } else {
       gh(['release', 'upload', tag, '--repo', repo, '--clobber', ...inst.files.map((f) => f.full)], { stdio: 'inherit' });
     }
-    console.log('  done\n');
+    // mark it released so build.js starts emitting a real link for this product
+    const cur = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'downloads.json'), 'utf8'));
+    cur.released = cur.released || {};
+    cur.released[p.slug] = true;
+    fs.writeFileSync(path.join(ROOT, 'data', 'downloads.json'), JSON.stringify(cur, null, 2) + '\n');
+    console.log('  done, link enabled\n');
   } catch (e) {
     console.log(`  FAILED: ${e.message.split('\n')[0]}\n`);
     failed++;
