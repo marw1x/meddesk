@@ -1,0 +1,19 @@
+{
+  "_help": [
+    "Where the installer files are hosted. Until baseUrl is filled in, the site renders the download",
+    "buttons in a 'coming soon' state instead of shipping dead links.",
+    "",
+    "With GitHub Releases, baseUrl is:  https://github.com/<user>/<repo>/releases/download",
+    "and each tag below is the release tag you created for that product.",
+    "The final link becomes:  <baseUrl>/<tag>/<file name>",
+    "",
+    "See README.md section 3 for the click-by-click setup."
+  ],
+  "baseUrl": "",
+  "tags": {
+    "asnaan": "asnaan-v1.0.0",
+    "gynodesk": "gynodesk-v1.0.24",
+    "clinic-desk": "clinic-desk-v1.0.0",
+    "clinic-manager": "clinic-manager-v2.0.0"
+  }
+}
