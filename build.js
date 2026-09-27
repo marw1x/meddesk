@@ -311,7 +311,7 @@ function copyAssets(built) {
   for (const f of ['PlexArabic-400.woff2', 'PlexArabic-500.woff2', 'PlexArabic-600.woff2', 'PlexArabic-700.woff2']) {
     copy(path.join(fontSrc, f), path.join(A, 'fonts', f));
   }
-  copy(path.join(HOME, 'marketing-kit', 'assets', 'logo.png'), path.join(A, 'logo.png'));
+  copy(path.join(ROOT, 'static', 'logo.png'), path.join(A, 'logo.png')); // the site keeps its own copy of the MedDesk mark
   for (const b of built) {
     const small = path.join(ROOT, 'static', 'logos', `${b.p.slug}.png`); // 192px copies from tools/make-logos.js
     copy(fs.existsSync(small) ? small : path.join(HOME, b.p.logo), path.join(A, 'logos', `${b.p.slug}.png`));
