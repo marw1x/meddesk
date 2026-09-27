@@ -58,7 +58,19 @@ function installers(p) {
   if (!rows.length) return { version: null, files: [] };
   const version = rows.map((r) => r.version).sort(cmpVer).pop();
   // only x64 and ia32 go up; the combined installer is the sum of the two and nobody needs it
-  return { version, files: rows.filter((r) => r.version === version && r.arch !== 'all') };
+  const files = rows.filter((r) => r.version === version && r.arch !== 'all');
+  // the Android build ships in the same release when there is one for this version
+  if (p.apk) {
+    const dir = path.join(HOME, p.apk.dir);
+    const re = new RegExp(p.apk.pattern);
+    if (fs.existsSync(dir)) {
+      for (const f of fs.readdirSync(dir)) {
+        const m = f.match(re);
+        if (m && m[1] === version) files.push({ file: f, version, arch: 'apk', full: path.join(dir, f) });
+      }
+    }
+  }
+  return { version, files };
 }
 
 let failed = 0;

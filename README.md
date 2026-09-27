@@ -28,7 +28,8 @@ That writes `docs/`. Open `docs/index.html` to look at it.
 | `release.js` | creates the GitHub releases and uploads the installers |
 | `publish.bat` | rebuild, commit and push the site |
 | `upload-list.md` | generated: exactly which installer files to upload under which release tag |
-| `tools/grab-frames.js` | pulled the Clinic Manager screenshots out of its promo clips |
+| `static/shots/<product>/` | screenshots per language (`ar-queue.png`, `en-queue.png`), captured from the running apps on seeded demo data; a missing English file falls back to Arabic |
+| `static/logos/` | 192px product marks from `tools/make-logos.js` (the originals are 100-260 KB each) |
 
 Versions and file sizes on the page are read from the real installers in each app's `dist` folder at build
 time, so they can't drift. Build new installers, re-run `node build.js`, and the numbers update.
@@ -38,13 +39,22 @@ time, so they can't drift. Build new installers, re-run `node build.js`, and the
 ## 2. The pages
 
 - `index.html` - hero, the four products, why it is different, how to install, FAQ, WhatsApp
-- `asnaan.html`, `gynodesk.html`, `clinic-desk.html`, `clinic-manager.html` - one per product:
+- `asnaan.html`, `gynodesk.html`, `clinic-desk.html`, `raydesk.html` - one per product:
   screenshots, what it does, requirements, download
 - `en/` - the same eight pages in English
 
 The language button in the nav swaps to the same page in the other language, not back to the home page.
 
 ---
+
+## Refreshing the screenshots
+
+Each app can photograph its own screens: seed a throwaway data folder with the app's `build/seed.js`, set
+`trialAccepted: true` (and for Asnaan `termsAccepted: 999`) in that folder's `device.json`, move its `port` off
+the default so a live clinic on this PC is not disturbed, then start the app with `CLINIC_DATA_DIR` +
+`CLINIC_SHOT_DIR` (Asnaan: `DENTAL_DATA_DIR` + `DENTAL_SHOT_DIR`). Check each image before copying it into
+`static/shots/` - on Clinic Desk and GynoDesk the capture can photograph the previous screen, because leaving a
+started visit opens a "discard draft?" confirmation.
 
 ## 3. Putting it online
 

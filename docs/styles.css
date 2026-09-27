@@ -20,7 +20,7 @@
   --p-asnaan: #29bfe0;        --i-asnaan: #032330;
   --p-gynodesk: #f2679a;      --i-gynodesk: #2c0a18;
   --p-clinicdesk: #2fd8c3;    --i-clinicdesk: #03231f;
-  --p-clinic-manager: #ecc352; --i-clinic-manager: #241a02; --t-clinic-manager: #ecc352;
+  --p-raydesk: #ecc352; --i-raydesk: #241a02; --t-raydesk: #ecc352;
 
   --bg: #05161f;
   --bg-2: #08202c;
@@ -55,7 +55,7 @@
     --p-asnaan: #0e7490;        --i-asnaan: #ffffff;
     --p-gynodesk: #b8336a;      --i-gynodesk: #ffffff;
     --p-clinicdesk: #0f766e;    --i-clinicdesk: #ffffff;
-    --p-clinic-manager: #c9a227; --i-clinic-manager: #241a02; --t-clinic-manager: #7d5f08;
+    --p-raydesk: #c9a227; --i-raydesk: #241a02; --t-raydesk: #7d5f08;
 
     --bg: #f7fafb;
     --bg-2: #eef5f7;
@@ -76,11 +76,11 @@
 html[data-p="asnaan"] { --accent: var(--p-asnaan); --accent-ink: var(--i-asnaan); }
 html[data-p="gynodesk"] { --accent: var(--p-gynodesk); --accent-ink: var(--i-gynodesk); }
 html[data-p="clinic-desk"] { --accent: var(--p-clinicdesk); --accent-ink: var(--i-clinicdesk); }
-html[data-p="clinic-manager"] { --accent: var(--p-clinic-manager); --accent-ink: var(--i-clinic-manager); --accent-text: var(--t-clinic-manager); }
+html[data-p="raydesk"] { --accent: var(--p-raydesk); --accent-ink: var(--i-raydesk); --accent-text: var(--t-raydesk); }
 .pcard[data-p="asnaan"], .ocard[data-p="asnaan"] { --accent: var(--p-asnaan); }
 .pcard[data-p="gynodesk"], .ocard[data-p="gynodesk"] { --accent: var(--p-gynodesk); }
 .pcard[data-p="clinic-desk"], .ocard[data-p="clinic-desk"] { --accent: var(--p-clinicdesk); }
-.pcard[data-p="clinic-manager"], .ocard[data-p="clinic-manager"] { --accent: var(--p-clinic-manager); --accent-text: var(--t-clinic-manager); }
+.pcard[data-p="raydesk"], .ocard[data-p="raydesk"] { --accent: var(--p-raydesk); --accent-text: var(--t-raydesk); }
 
 * { box-sizing: border-box; }
 
@@ -131,7 +131,8 @@ html[dir="ltr"] body::before {
 }
 ::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--accent) 70%, transparent); background-clip: content-box; }
 
-img { max-width: 100%; display: block; }
+/* height:auto lets the width/height attributes reserve space without forcing the intrinsic height */
+img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
@@ -347,6 +348,10 @@ footer a:hover { color: var(--text); text-decoration: underline; }
 .dlbox .alt a { color: var(--accent-text); font-weight: 600; text-decoration: none; }
 .dlbox .alt a:hover { text-decoration: underline; }
 .dlbox .alt p { margin: 8px 0 0; color: var(--dim); font-size: 13.5px; line-height: 1.55; }
+.dlbox .android { margin-top: 20px; padding-top: 20px; border-block-start: 1px solid var(--line-soft); }
+.dlbox .android .btn { width: 100%; }
+.dlbox .android .sz { margin-inline-start: auto; font-size: 13.5px; font-weight: 600; opacity: .7; }
+.dlbox .android p { margin: 12px 0 0; color: var(--dim); font-size: 13.5px; line-height: 1.6; }
 /* buying is the secondary action here: the free trial is what the page is asking for first */
 .dlbox .buy { margin-top: 20px; padding-top: 20px; border-block-start: 1px solid var(--line-soft); }
 .dlbox .buy .btn { width: 100%; }

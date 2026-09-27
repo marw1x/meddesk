@@ -52,6 +52,28 @@ function installers(p) {
 }
 const mb = (bytes) => `${Math.round(bytes / 1048576)} MB`;
 
+// The Android build, if the product has one: newest version matching the product's apk pattern.
+function apkFor(p) {
+  if (!p.apk) return null;
+  const dir = path.join(HOME, p.apk.dir);
+  if (!fs.existsSync(dir)) return null;
+  const re = new RegExp(p.apk.pattern);
+  const rows = fs.readdirSync(dir).map((file) => { const m = file.match(re); return m && { file, version: m[1], full: path.join(dir, file), size: fs.statSync(path.join(dir, file)).size }; }).filter(Boolean);
+  if (!rows.length) return null;
+  return rows.sort((a, c) => cmpVer(a.version, c.version)).pop();
+}
+
+// Screenshots are captured per language; an English one that does not exist falls back to Arabic.
+const SHOTS = path.join(ROOT, 'static', 'shots');
+const shotName = (p, s, l) => (fs.existsSync(path.join(SHOTS, p.slug, `${l}-${s.f}.png`)) ? `${l}-${s.f}.png` : `ar-${s.f}.png`);
+// width/height on every screenshot so the page reserves the space and nothing jumps while it loads
+const pngDims = (file) => { const buf = fs.readFileSync(file); return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) }; };
+const shotImg = (p, s, l, base, attrs = '') => {
+  const name = shotName(p, s, l);
+  const { w, h } = pngDims(path.join(SHOTS, p.slug, name));
+  return `<img src="${base}assets/shots/${p.slug}/${name}" width="${w}" height="${h}" alt="${t(p.name, l)} - ${t(s.c, l)}"${attrs}>`;
+};
+
 function baseUrlFromGit() {
   try {
     const url = require('child_process').execSync('git remote get-url origin', { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
@@ -155,8 +177,7 @@ function homePage(L, built) {
         <a class="btn btn-ghost" href="${waLink(waGeneral[l])}" target="_blank" rel="noopener">${icon('whatsapp')}${t(u.heroCta2, l)}</a>
       </div>
     </div>
-    <div class="hero-shot"><img src="${base}assets/shots/${hero.p.slug}/${hero.p.shots[0].f}" width="1200" height="900"
-      alt="${t(hero.p.name, l)} - ${t(hero.p.shots[0].c, l)}" fetchpriority="high"></div>
+    <div class="hero-shot">${shotImg(hero.p, hero.p.shots[0], l, base, ' fetchpriority="high"')}</div>
   </div></div></section>
 
   <section id="products"><div class="wrap">
@@ -165,7 +186,7 @@ function homePage(L, built) {
       <a class="pcard" data-p="${p.slug}" href="${base}${p.slug}.html">
         <div class="pcard-top"><img style="view-transition-name:mark-${p.slug}" src="${base}assets/logos/${p.slug}.png" alt="">
           <div><h3>${t(p.name, l)}</h3><div class="aud">${t(p.audience, l)}</div></div></div>
-        <div class="pshot"><img loading="lazy" src="${base}assets/shots/${p.slug}/${p.shots[0].f}" alt="${t(p.name, l)}"></div>
+        <div class="pshot">${shotImg(p, p.shots[0], l, base, ' loading="lazy"')}</div>
         <p>${t(p.blurb, l)}</p>
         <span class="go">${t(u.openProduct, l)}${icon(l === 'ar' ? 'chevronLeft' : 'chevronRight')}</span>
       </a>`).join('')}</div>
@@ -215,6 +236,12 @@ function productPage(L, b, built) {
       : `<span class="btn" aria-disabled="true">${t(u.notReady, l)}</span>`}
     <div class="trial">${t(u.trialNote, l)}</div>
     ${href32 ? `<div class="alt"><a href="${href32}" download>${t(u.for32, l)}</a><p>${t(u.hint64, l)}</p></div>` : ''}
+    ${b.apk ? `<div class="android">
+      ${linkFor(p, b.apk)
+        ? `<a class="btn btn-ghost" href="${linkFor(p, b.apk)}" download>${icon('phone')}${t(u.androidCta, l)}<span class="num sz">${mb(b.apk.size)}</span></a>`
+        : `<span class="btn" aria-disabled="true">${icon('phone')}${t(u.androidCta, l)}</span>`}
+      <p>${t(u.androidHint, l)}</p>
+    </div>` : ''}
     <div class="buy">
       <a class="btn btn-ghost" href="${waLink(buyMsg(p, l))}" target="_blank" rel="noopener">${icon('key')}${t(u.buyCta, l)}</a>
       <p>${t(u.buyHint, l)}</p>
@@ -243,7 +270,7 @@ function productPage(L, b, built) {
     <div class="sec-head"><h2>${t(u.screenshots, l)}</h2></div>
   </div>
   <div class="wrap"><div class="gallery">${p.shots.map((s, i) => `
-    <figure><img loading="${i === 0 ? 'eager' : 'lazy'}" src="${base}assets/shots/${p.slug}/${s.f}" alt="${t(s.c, l)}">
+    <figure>${shotImg(p, s, l, base, i === 0 ? '' : ' loading="lazy"')}
       <figcaption>${t(s.c, l)}</figcaption></figure>`).join('')}</div></div>
   </section>
 
@@ -286,14 +313,18 @@ function copyAssets(built) {
   }
   copy(path.join(HOME, 'marketing-kit', 'assets', 'logo.png'), path.join(A, 'logo.png'));
   for (const b of built) {
-    copy(path.join(HOME, b.p.logo), path.join(A, 'logos', `${b.p.slug}.png`));
-    for (const s of b.p.shots) copy(path.join(HOME, b.p.shotDir, s.f), path.join(A, 'shots', b.p.slug, s.f));
+    const small = path.join(ROOT, 'static', 'logos', `${b.p.slug}.png`); // 192px copies from tools/make-logos.js
+    copy(fs.existsSync(small) ? small : path.join(HOME, b.p.logo), path.join(A, 'logos', `${b.p.slug}.png`));
+    for (const f of fs.readdirSync(path.join(SHOTS, b.p.slug))) copy(path.join(SHOTS, b.p.slug, f), path.join(A, 'shots', b.p.slug, f));
   }
   copy(path.join(ROOT, 'static', 'styles.css'), path.join(DIST, 'styles.css'));
+  // old URLs of retired pages forward to their replacement instead of a 404
+  copy(path.join(ROOT, 'static', 'redirects', 'clinic-manager.html'), path.join(DIST, 'clinic-manager.html'));
+  copy(path.join(ROOT, 'static', 'redirects', 'en', 'clinic-manager.html'), path.join(DIST, 'en', 'clinic-manager.html'));
 }
 
 // ---------- run ----------
-const built = S.products.map((p) => ({ p, inst: installers(p) }));
+const built = S.products.map((p) => ({ p, inst: installers(p), apk: apkFor(p) }));
 const byslug = Object.fromEntries(built.map((b) => [b.p.slug, b]));
 
 fs.rmSync(DIST, { recursive: true, force: true });
@@ -324,7 +355,8 @@ for (const b of built) {
   lines.push(`## ${b.p.name.en} - tag: ${tag}`);
   if (!b.inst.version) { lines.push('', '  No installer found. Run `npm run dist` in ' + b.p.dir + ' first.', ''); continue; }
   lines.push('', `  from  ${path.join(HOME, b.p.dir, 'dist')}`, '');
-  for (const [arch, r] of Object.entries(b.inst.files)) lines.push(`  [${arch}] ${r.file}   (${mb(r.size)})`);
+  for (const [arch, r] of Object.entries(b.inst.files)) if (arch !== 'all') lines.push(`  [${arch}] ${r.file}   (${mb(r.size)})`);
+  if (b.apk) lines.push(`  [apk] ${b.apk.file}   (${mb(b.apk.size)})   from ${path.join(HOME, b.p.apk.dir)}`);
   if (tag.includes('.') && !tag.endsWith(b.inst.version)) {
     lines.push('', `  WARNING: the tag says a different version than the installer (${b.inst.version}).`);
   }

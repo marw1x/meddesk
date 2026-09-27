@@ -12,14 +12,14 @@
   "baseUrl": "",
   "tags": {
     "asnaan": "asnaan-v1.0.0",
-    "gynodesk": "gynodesk-v1.0.24",
-    "clinic-desk": "clinic-desk-v1.0.0",
-    "clinic-manager": "clinic-manager-v2.0.0"
+    "gynodesk": "gynodesk-v1.0.25",
+    "clinic-desk": "clinic-desk-v1.2.1",
+    "raydesk": "raydesk-v1.0.0"
   },
   "released": {
     "asnaan": false,
     "gynodesk": false,
     "clinic-desk": false,
-    "clinic-manager": false
+    "raydesk": false
   }
 }
