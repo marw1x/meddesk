@@ -67,6 +67,11 @@ const ui = {
   screenshots: { ar: 'من داخل البرنامج', en: 'Inside the program' },
   features: { ar: 'ما الذي يفعله', en: 'What it does' },
   backHome: { ar: 'كل البرامج', en: 'All products' },
+  buyCta: { ar: 'طلب شراء الترخيص', en: 'Request a licence' },
+  buyHint: {
+    ar: 'رمز هذا الجهاز تجده داخل البرنامج: الإعدادات ← ترخيص البرنامج. أرسله مع الطلب ويصلك رمز التفعيل.',
+    en: 'Your PC code is inside the app: Settings, then Software licence. Send it with the request and the activation code comes back to you.',
+  },
   otherProducts: { ar: 'برامج أخرى', en: 'Other products' },
 
   footerRights: { ar: 'جميع الحقوق محفوظة', en: 'All rights reserved' },

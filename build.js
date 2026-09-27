@@ -70,6 +70,22 @@ const linkFor = (p, row) => {
 };
 
 const waLink = (msg) => `https://wa.me/${S.brand.whatsapp.replace('+', '')}?text=${encodeURIComponent(msg)}`;
+
+const buyMsg = (p, l) => (l === 'ar'
+  ? `مرحباً، أريد شراء ترخيص برنامج ${p.name.ar}.
+
+اسم العيادة: 
+المدينة: 
+رقم الهاتف: 
+عدد الأجهزة: 
+رمز هذا الجهاز: `
+  : `Hello, I would like to buy a licence for ${p.name.en}.
+
+Clinic name: 
+City: 
+Phone: 
+Number of computers: 
+This PC code: `);
 const waGeneral = { ar: 'مرحباً، أريد معرفة المزيد عن برامج ميد ديسك', en: 'Hello, I would like to know more about MedDesk' };
 
 // ---------- shared chrome ----------
@@ -199,6 +215,10 @@ function productPage(L, b, built) {
       : `<span class="btn" aria-disabled="true">${t(u.notReady, l)}</span>`}
     <div class="trial">${t(u.trialNote, l)}</div>
     ${href32 ? `<div class="alt"><a href="${href32}" download>${t(u.for32, l)}</a><p>${t(u.hint64, l)}</p></div>` : ''}
+    <div class="buy">
+      <a class="btn btn-ghost" href="${waLink(buyMsg(p, l))}" target="_blank" rel="noopener">${icon('key')}${t(u.buyCta, l)}</a>
+      <p>${t(u.buyHint, l)}</p>
+    </div>
     ${!href64 ? `<div class="alt"><a href="${waLink(waMsg)}" target="_blank" rel="noopener">${t(u.heroCta2, l)}</a></div>` : ''}
   </div>`;
 

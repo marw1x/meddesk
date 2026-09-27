@@ -347,6 +347,10 @@ footer a:hover { color: var(--text); text-decoration: underline; }
 .dlbox .alt a { color: var(--accent-text); font-weight: 600; text-decoration: none; }
 .dlbox .alt a:hover { text-decoration: underline; }
 .dlbox .alt p { margin: 8px 0 0; color: var(--dim); font-size: 13.5px; line-height: 1.55; }
+/* buying is the secondary action here: the free trial is what the page is asking for first */
+.dlbox .buy { margin-top: 20px; padding-top: 20px; border-block-start: 1px solid var(--line-soft); }
+.dlbox .buy .btn { width: 100%; }
+.dlbox .buy p { margin: 12px 0 0; color: var(--dim); font-size: 13.5px; line-height: 1.6; }
 
 /* gallery: horizontal scroll-snap */
 .gallery {
