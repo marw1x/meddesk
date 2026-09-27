@@ -73,9 +73,9 @@ const waLink = (msg) => `https://wa.me/${S.brand.whatsapp.replace('+', '')}?text
 const waGeneral = { ar: 'مرحباً، أريد معرفة المزيد عن برامج ميد ديسك', en: 'Hello, I would like to know more about MedDesk' };
 
 // ---------- shared chrome ----------
-function head(L, title, desc, base, canonicalPath) {
+function head(L, title, desc, base, canonicalPath, product) {
   return `<!doctype html>
-<html lang="${L.code}" dir="${L.dir}">
+<html lang="${L.code}" dir="${L.dir}"${product ? ` data-p="${product}"` : ''}>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -146,8 +146,8 @@ function homePage(L, built) {
   <section id="products"><div class="wrap">
     <div class="sec-head"><h2>${t(u.productsTitle, l)}</h2><p>${t(u.productsBody, l)}</p></div>
     <div class="products">${S.products.map((p) => `
-      <a class="pcard" href="${base}${p.slug}.html">
-        <div class="pcard-top"><img src="${base}assets/logos/${p.slug}.png" alt="">
+      <a class="pcard" data-p="${p.slug}" href="${base}${p.slug}.html">
+        <div class="pcard-top"><img style="view-transition-name:mark-${p.slug}" src="${base}assets/logos/${p.slug}.png" alt="">
           <div><h3>${t(p.name, l)}</h3><div class="aud">${t(p.audience, l)}</div></div></div>
         <div class="pshot"><img loading="lazy" src="${base}assets/shots/${p.slug}/${p.shots[0].f}" alt="${t(p.name, l)}"></div>
         <p>${t(p.blurb, l)}</p>
@@ -204,13 +204,13 @@ function productPage(L, b, built) {
 
   const reqs = [...S.winReq[l], ...(p.extraReq ? p.extraReq[l] : [])];
 
-  return head(L, title, p.blurb[l], base, `${p.slug}.html`) + nav(L, base) + `
+  return head(L, title, p.blurb[l], base, `${p.slug}.html`, p.slug) + nav(L, base) + `
 <main>
   <div class="wrap crumb"><a href="${base}index.html">${icon(l === 'ar' ? 'arrowRight' : 'arrowLeft')}${t(u.backHome, l)}</a></div>
 
   <div class="wrap"><div class="phead">
     <div>
-      <img class="logo" src="${base}assets/logos/${p.slug}.png" alt="">
+      <img class="logo" style="view-transition-name:mark-${p.slug}" src="${base}assets/logos/${p.slug}.png" alt="">
       <h1>${t(p.name, l)}</h1>
       <div class="aud">${t(p.audience, l)}</div>
       <p class="blurb">${t(p.blurb, l)}</p>
@@ -241,7 +241,7 @@ function productPage(L, b, built) {
   <section><div class="wrap">
     <div class="sec-head"><h2>${t(u.otherProducts, l)}</h2></div>
     <div class="others">${S.products.filter((o) => o.slug !== p.slug).map((o) => `
-      <a class="ocard" href="${base}${o.slug}.html"><img src="${base}assets/logos/${o.slug}.png" alt="">
+      <a class="ocard" data-p="${o.slug}" href="${base}${o.slug}.html"><img src="${base}assets/logos/${o.slug}.png" alt="">
         <span><b>${t(o.name, l)}</b><span>${t(o.audience, l)}</span></span></a>`).join('')}</div>
   </div></section>
 
