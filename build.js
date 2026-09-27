@@ -114,7 +114,6 @@ function footer(L, base) {
   <span>${t(S.ui.footerNote, L.code)}</span>
   <span>© <span class="num">${year}</span> ${t(S.brand.name, L.code)} · <a href="${waLink(waGeneral[L.code])}" target="_blank" rel="noopener">WhatsApp <span class="num">${S.brand.whatsapp}</span></a></span>
 </div></footer>
-<script src="${base}app.js" defer></script>
 </body></html>`;
 }
 
@@ -147,7 +146,7 @@ function homePage(L, built) {
   <section id="products"><div class="wrap">
     <div class="sec-head"><h2>${t(u.productsTitle, l)}</h2><p>${t(u.productsBody, l)}</p></div>
     <div class="products">${S.products.map((p) => `
-      <a class="pcard reveal" href="${base}${p.slug}.html">
+      <a class="pcard" href="${base}${p.slug}.html">
         <div class="pcard-top"><img src="${base}assets/logos/${p.slug}.png" alt="">
           <div><h3>${t(p.name, l)}</h3><div class="aud">${t(p.audience, l)}</div></div></div>
         <div class="pshot"><img loading="lazy" src="${base}assets/shots/${p.slug}/${p.shots[0].f}" alt="${t(p.name, l)}"></div>
@@ -159,7 +158,7 @@ function homePage(L, built) {
   <section id="why"><div class="wrap">
     <div class="sec-head"><h2>${t(u.whyTitle, l)}</h2></div>
     <div class="why-grid">${S.why.map((w) => `
-      <div class="reveal">${icon(w.icon)}<h3>${t(w.t, l)}</h3><p>${t(w.b, l)}</p></div>`).join('')}</div>
+      <div>${icon(w.icon)}<h3>${t(w.t, l)}</h3><p>${t(w.b, l)}</p></div>`).join('')}</div>
   </div></section>
 
   <section id="install"><div class="wrap">
@@ -231,7 +230,7 @@ function productPage(L, b, built) {
   <section><div class="wrap">
     <div class="sec-head"><h2>${t(u.features, l)}</h2></div>
     <div class="feats">${p.features.map((f) => `
-      <div class="feat reveal">${icon(f.icon)}<div><h3>${t(f.t, l)}</h3><p>${t(f.b, l)}</p></div></div>`).join('')}</div>
+      <div class="feat">${icon(f.icon)}<div><h3>${t(f.t, l)}</h3><p>${t(f.b, l)}</p></div></div>`).join('')}</div>
   </div></section>
 
   <section><div class="wrap">
@@ -262,7 +261,7 @@ function copy(from, to) {
 function copyAssets(built) {
   const A = path.join(DIST, 'assets');
   const fontSrc = path.join(HOME, 'dental-app', 'promo', 'ad', 'public', 'fonts');
-  for (const f of ['PlexArabic-400.woff2', 'PlexArabic-500.woff2', 'PlexArabic-600.woff2', 'PlexArabic-700.woff2', 'Geist-Bold.woff2']) {
+  for (const f of ['PlexArabic-400.woff2', 'PlexArabic-500.woff2', 'PlexArabic-600.woff2', 'PlexArabic-700.woff2']) {
     copy(path.join(fontSrc, f), path.join(A, 'fonts', f));
   }
   copy(path.join(HOME, 'marketing-kit', 'assets', 'logo.png'), path.join(A, 'logo.png'));
@@ -271,7 +270,6 @@ function copyAssets(built) {
     for (const s of b.p.shots) copy(path.join(HOME, b.p.shotDir, s.f), path.join(A, 'shots', b.p.slug, s.f));
   }
   copy(path.join(ROOT, 'static', 'styles.css'), path.join(DIST, 'styles.css'));
-  copy(path.join(ROOT, 'static', 'app.js'), path.join(DIST, 'app.js'));
 }
 
 // ---------- run ----------
