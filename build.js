@@ -406,6 +406,5 @@ if (!configured) {
   console.log('\n  NOTE: no GitHub remote yet, and no baseUrl in data/downloads.json, so the download');
   console.log('        buttons render as "coming soon" instead of dead links. See LIVE.md.');
 } else {
-  console.log(`
-  downloads -> ${PAGES ? PAGES.base : BASE}`);
+  console.log(`\n  downloads -> ${PAGES ? PAGES.base : BASE}`);
 }
