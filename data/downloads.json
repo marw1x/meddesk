@@ -21,5 +21,53 @@
     "gynodesk": true,
     "clinic-desk": true,
     "raydesk": true
+  },
+  "pages": {
+    "base": "https://marw1x.github.io/meddesk-downloads",
+    "files": {
+      "asnaan": [
+        {
+          "name": "Asnaan-Setup-1.0.0.exe",
+          "version": "1.0.0",
+          "size": 90501220
+        },
+        {
+          "name": "Asnaan-1.0.0.apk",
+          "version": "1.0.0",
+          "size": 79624860
+        }
+      ],
+      "gynodesk": [
+        {
+          "name": "GynoDesk-Setup-1.0.28.exe",
+          "version": "1.0.28",
+          "size": 103168001
+        },
+        {
+          "name": "GynoDesk-1.0.28.apk",
+          "version": "1.0.28",
+          "size": 25716864
+        }
+      ],
+      "clinic-desk": [
+        {
+          "name": "ClinicDesk-Setup-1.4.0.exe",
+          "version": "1.4.0",
+          "size": 84334681
+        }
+      ],
+      "raydesk": [
+        {
+          "name": "RayDesk-Setup-1.0.0.exe",
+          "version": "1.0.0",
+          "size": 83037757
+        },
+        {
+          "name": "RayDesk-1.0.0.apk",
+          "version": "1.0.0",
+          "size": 71613983
+        }
+      ]
+    }
   }
 }
