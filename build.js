@@ -141,6 +141,7 @@ function nav(L, base) {
     <a href="${base}index.html#products">${t(u.navProducts, L.code)}</a>
     <a href="${base}index.html#why" data-secondary>${t(u.navWhy, L.code)}</a>
     <a href="${base}index.html#install" data-secondary>${t(u.navInstall, L.code)}</a>
+    <a href="${base}index.html#android-install" data-secondary>${t(u.navAndroid, L.code)}</a>
     <a href="${base}index.html#faq" data-secondary>${t(u.navHelp, L.code)}</a>
   </nav>
   <a class="lang" href="${swapHref}" hreflang="${L.other}">${t(u.langSwitch, L.code)}</a>
@@ -160,6 +161,18 @@ function stepsHtml(L, list = S.steps, cls = '') {
   return `<div class="steps${cls}">${list.map((s, i) => `
     <div class="step"><span class="n num">${i + 1}</span>
       <h3>${t(s.t, L.code)}</h3><p>${t(s.b, L.code)}</p></div>`).join('')}</div>`;
+}
+
+// The Android install guide, on the home page and on every product page that has an Android app.
+function androidGuide(L) {
+  const l = L.code, u = S.ui;
+  return `
+  <section id="android-install"><div class="wrap">
+    <div class="sec-head"><h2>${t(u.androidInstallTitle, l)}</h2><p>${t(u.androidInstallBody, l)}</p></div>
+    ${stepsHtml(L, S.androidSteps, ' four')}
+    <p class="anote">${icon('phone')}<span>${t(u.androidNote, l)}</span></p>
+  </div></section>
+`;
 }
 
 // ---------- home ----------
@@ -203,7 +216,7 @@ function homePage(L, built) {
     <div class="sec-head"><h2>${t(u.installTitle, l)}</h2><p>${t(u.installBody, l)}</p></div>
     ${stepsHtml(L)}
   </div></section>
-
+${androidGuide(L)}
   <section id="faq"><div class="wrap">
     <div class="sec-head"><h2>${t(u.faqTitle, l)}</h2></div>
     <div class="faq">${S.faq.map((f) => `
@@ -239,7 +252,8 @@ function productPage(L, b, built) {
       ${linkFor(p, b.apk)
         ? `<a class="btn btn-ghost" href="${linkFor(p, b.apk)}" download>${icon('phone')}${t(u.androidCta, l)}<span class="num sz">${mb(b.apk.size)}</span></a>`
         : `<span class="btn" aria-disabled="true">${icon('phone')}${t(u.androidCta, l)}</span>`}
-      <p>${t(u.androidHint, l)} <a href="#android-install">${t(u.androidHow, l)}</a></p>
+      <p>${t(u.androidHint, l)}</p>
+      <a class="how" href="#android-install">${icon('help')}${t(u.androidHow, l)}</a>
     </div>` : ''}
     <div class="buy">
       <a class="btn btn-ghost" href="${waLink(buyMsg(p, l))}" target="_blank" rel="noopener">${icon('key')}${t(u.buyCta, l)}</a>
@@ -283,13 +297,7 @@ function productPage(L, b, built) {
     <div class="sec-head"><h2>${t(u.installTitle, l)}</h2><p>${t(u.installBody, l)}</p></div>
     ${stepsHtml(L)}
   </div></section>
-${b.apk ? `
-  <section id="android-install"><div class="wrap">
-    <div class="sec-head"><h2>${t(u.androidInstallTitle, l)}</h2><p>${t(u.androidInstallBody, l)}</p></div>
-    ${stepsHtml(L, S.androidSteps, ' four')}
-    <p class="anote">${icon('phone')}<span>${t(u.androidNote, l)}</span></p>
-  </div></section>
-` : ''}
+${b.apk ? androidGuide(L) : ''}
   <section><div class="wrap">
     <div class="sec-head"><h2>${t(u.otherProducts, l)}</h2></div>
     <div class="others">${S.products.filter((o) => o.slug !== p.slug).map((o) => `

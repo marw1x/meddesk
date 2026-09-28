@@ -15,6 +15,7 @@ const ui = {
   navProducts: { ar: 'البرامج', en: 'Products' },
   navWhy: { ar: 'لماذا ميد ديسك', en: 'Why MedDesk' },
   navInstall: { ar: 'طريقة التركيب', en: 'Installing' },
+  navAndroid: { ar: 'تثبيت أندرويد', en: 'Android install' },
   navHelp: { ar: 'أسئلة شائعة', en: 'FAQ' },
   langSwitch: { ar: 'English', en: 'العربية' },
 
@@ -149,8 +150,8 @@ const androidSteps = [
   {
     t: { ar: 'نزّل التطبيق على الجهاز نفسه', en: 'Download it on the device itself' },
     b: {
-      ar: 'افتح هذه الصفحة من التابلت أو الموبايل واضغط «تحميل تطبيق أندرويد». إذا قال المتصفح إن الملف قد يكون ضاراً، اختر «التنزيل على أي حال».',
-      en: 'Open this page on the tablet or phone and press "Download the Android app". If the browser says the file might be harmful, choose "Download anyway".',
+      ar: 'افتح صفحة البرنامج على هذا الموقع من التابلت أو الموبايل واضغط «تحميل تطبيق أندرويد». إذا قال المتصفح إن الملف قد يكون ضاراً، اختر «التنزيل على أي حال».',
+      en: 'Open the product page on this site from the tablet or phone and press "Download the Android app". If the browser says the file might be harmful, choose "Download anyway".',
     },
   },
   {
@@ -208,8 +209,8 @@ const faq = [
   {
     q: { ar: 'أندرويد يقول إن التطبيق غير آمن أو محظور. ماذا أفعل؟', en: 'Android says the app is unsafe or blocked. What do I do?' },
     a: {
-      ar: 'أندرويد يسأل هكذا عن أي تطبيق لا يأتي من متجر Google Play، وليس لأنه وجد فيروساً. فعّل «السماح من هذا المصدر» عندما يطلب ذلك، وعند Play Protect اختر «فحص التطبيق» ثم «تثبيت»، أو «مزيد من التفاصيل» ثم «التثبيت على أي حال». الخطوات كاملة في صفحة كل برنامج تحت «تثبيت تطبيق أندرويد».',
-      en: 'Android asks this about any app that does not come from the Google Play store, not because it found a virus. Switch on "Allow from this source" when asked, and at Play Protect choose "Scan app" then "Install", or "More details" then "Install anyway". The full steps are on each product page under "Installing the Android app".',
+      ar: 'أندرويد يسأل هكذا عن أي تطبيق لا يأتي من متجر Google Play، وليس لأنه وجد فيروساً. فعّل «السماح من هذا المصدر» عندما يطلب ذلك، وعند Play Protect اختر «فحص التطبيق» ثم «تثبيت»، أو «مزيد من التفاصيل» ثم «التثبيت على أي حال». الخطوات كاملة في قسم «تثبيت تطبيق أندرويد» أعلى هذه الأسئلة وفي صفحة كل برنامج.',
+      en: 'Android asks this about any app that does not come from the Google Play store, not because it found a virus. Switch on "Allow from this source" when asked, and at Play Protect choose "Scan app" then "Install", or "More details" then "Install anyway". The full steps are in "Installing the Android app" just above these questions and on each product page.',
     },
   },
   {
