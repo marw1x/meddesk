@@ -88,7 +88,8 @@ const linkFor = (p, row) => {
   const tag = (DL.tags || {})[p.slug];
   if (!tag) return null;
   if (!(DL.released || {})[p.slug]) return null; // not uploaded yet: show "coming soon", never a 404
-  return `${BASE.replace(/\/$/, '')}/${encodeURIComponent(tag)}/${encodeURIComponent(row.file)}`;
+  // GitHub stores an uploaded asset with every space turned into a dot ("Asnaan Setup 1.0.0.exe" -> "Asnaan.Setup.1.0.0.exe")
+  return `${BASE.replace(/\/$/, '')}/${encodeURIComponent(tag)}/${encodeURIComponent(row.file.replace(/ /g, '.'))}`;
 };
 
 const waLink = (msg) => `https://wa.me/${S.brand.whatsapp.replace('+', '')}?text=${encodeURIComponent(msg)}`;
@@ -219,10 +220,9 @@ function homePage(L, built) {
 // ---------- product page ----------
 function productPage(L, b, built) {
   const l = L.code, u = S.ui, base = L.base, p = b.p;
-  const x64 = b.inst.files.x64 || b.inst.files.all;
-  const ia32 = b.inst.files.ia32;
+  // one unified installer per app: it installs the 32- or 64-bit build to suit the PC
+  const x64 = b.inst.files.all;
   const href64 = linkFor(p, x64);
-  const href32 = linkFor(p, ia32);
   const waMsg = { ar: `مرحباً، أريد تجربة برنامج ${p.name.ar}`, en: `Hello, I would like to try ${p.name.en}` }[l];
   const title = `${p.name[l]} - ${p.audience[l]} | ${S.brand.name[l]}`;
 
@@ -235,7 +235,6 @@ function productPage(L, b, built) {
       ? `<a class="btn btn-primary" href="${href64}" download>${icon('download')}${t(u.downloadFor, l)}</a>`
       : `<span class="btn" aria-disabled="true">${t(u.notReady, l)}</span>`}
     <div class="trial">${t(u.trialNote, l)}</div>
-    ${href32 ? `<div class="alt"><a href="${href32}" download>${t(u.for32, l)}</a><p>${t(u.hint64, l)}</p></div>` : ''}
     ${b.apk ? `<div class="android">
       ${linkFor(p, b.apk)
         ? `<a class="btn btn-ghost" href="${linkFor(p, b.apk)}" download>${icon('phone')}${t(u.androidCta, l)}<span class="num sz">${mb(b.apk.size)}</span></a>`
@@ -355,7 +354,7 @@ for (const b of built) {
   lines.push(`## ${b.p.name.en} - tag: ${tag}`);
   if (!b.inst.version) { lines.push('', '  No installer found. Run `npm run dist` in ' + b.p.dir + ' first.', ''); continue; }
   lines.push('', `  from  ${path.join(HOME, b.p.dir, 'dist')}`, '');
-  for (const [arch, r] of Object.entries(b.inst.files)) if (arch !== 'all') lines.push(`  [${arch}] ${r.file}   (${mb(r.size)})`);
+  if (b.inst.files.all) lines.push(`  [win] ${b.inst.files.all.file}   (${mb(b.inst.files.all.size)})   32- and 64-bit in one`);
   if (b.apk) lines.push(`  [apk] ${b.apk.file}   (${mb(b.apk.size)})   from ${path.join(HOME, b.p.apk.dir)}`);
   if (tag.includes('.') && !tag.endsWith(b.inst.version)) {
     lines.push('', `  WARNING: the tag says a different version than the installer (${b.inst.version}).`);
@@ -367,7 +366,7 @@ fs.writeFileSync(path.join(ROOT, 'upload-list.md'), lines.join('\n'), 'utf8');
 console.log('docs/ built');
 for (const b of built) {
   const v = b.inst.version || '(no installer found)';
-  const files = Object.entries(b.inst.files).map(([a, r]) => `${a} ${mb(r.size)}`).join(', ') || '-';
+  const files = b.inst.files.all ? `win ${mb(b.inst.files.all.size)}${b.apk ? `, apk ${mb(b.apk.size)}` : ''}` : '-';
   const tag = (DL.tags || {})[b.p.slug] || '';
   const warn = b.inst.version && tag.includes('.') && !tag.endsWith(b.inst.version) ? '  <- tag/version mismatch' : '';
   console.log(`  ${b.p.slug.padEnd(15)} ${String(v).padEnd(10)} ${files}${warn}`);

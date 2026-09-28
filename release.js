@@ -27,7 +27,7 @@ if (!GH) {
   console.error('gh not found. Install it with:  winget install GitHub.cli');
   process.exit(1);
 }
-const gh = (a, opts = {}) => execFileSync(GH, a, { stdio: 'pipe', ...opts }).toString().trim();
+const gh = (a, opts = {}) => (execFileSync(GH, a, { stdio: 'pipe', ...opts }) || '').toString().trim(); // null when stdio is inherited
 
 try { gh(['auth', 'status']); } catch (_) {
   console.error('Not signed in to GitHub. Run:  gh auth login');
@@ -57,8 +57,8 @@ function installers(p) {
   }
   if (!rows.length) return { version: null, files: [] };
   const version = rows.map((r) => r.version).sort(cmpVer).pop();
-  // only x64 and ia32 go up; the combined installer is the sum of the two and nobody needs it
-  const files = rows.filter((r) => r.version === version && r.arch !== 'all');
+  // only the unified installer goes up: one file that installs the 32- or 64-bit build to suit the PC
+  const files = rows.filter((r) => r.version === version && r.arch === 'all');
   // the Android build ships in the same release when there is one for this version
   if (p.apk) {
     const dir = path.join(HOME, p.apk.dir);
@@ -100,7 +100,7 @@ for (const p of S.products) {
   try {
     if (!exists) {
       gh(['release', 'create', tag, '--repo', repo, '--title', `${p.name.en} ${inst.version}`,
-        '--notes', `${p.name.en} ${inst.version} - ${p.audience.en}.\n\nDownload the x64 build unless the PC is old, in which case use ia32 (32-bit).`,
+        '--notes', `${p.name.en} ${inst.version} - ${p.audience.en}.\n\nOne Windows installer for both 32- and 64-bit PCs (Windows 10 or 11)${inst.files.some((f) => f.arch === 'apk') ? ', plus the Android app' : ''}.`,
         ...inst.files.map((f) => f.full)], { stdio: 'inherit' });
     } else {
       gh(['release', 'upload', tag, '--repo', repo, '--clobber', ...inst.files.map((f) => f.full)], { stdio: 'inherit' });

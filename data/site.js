@@ -61,11 +61,6 @@ const ui = {
     ar: 'للتابلت أو الموبايل. بعد التحميل افتح الملف واسمح بالتثبيت من هذا المصدر إن طُلب منك.',
     en: 'For tablet or phone. After downloading, open the file and allow installs from this source if asked.',
   },
-  for32: { ar: 'جهاز قديم؟ نزّل نسخة 32 بت', en: 'Older PC? 32-bit version' },
-  hint64: {
-    ar: 'أغلب الأجهزة اليوم 64 بت. إذا لم يعمل الملف، جرّب نسخة 32 بت.',
-    en: 'Most PCs today are 64-bit. If the file will not run, try the 32-bit version.',
-  },
   notReady: { ar: 'رابط التحميل قيد التجهيز', en: 'Download link coming soon' },
   version: { ar: 'الإصدار', en: 'Version' },
   size: { ar: 'الحجم', en: 'Size' },
@@ -191,8 +186,8 @@ const faq = [
 ];
 
 const winReq = {
-  ar: ['ويندوز 10 أو 11 (ويعمل على ويندوز 7 بنسخة 32 بت)', 'ذاكرة 4 غيغابايت أو أكثر', 'مساحة فارغة 1 غيغابايت'],
-  en: ['Windows 10 or 11 (Windows 7 works with the 32-bit build)', '4 GB RAM or more', '1 GB free disk space'],
+  ar: ['ويندوز 10 أو 11، 32 أو 64 بت (ملف واحد للاثنين)', 'ذاكرة 4 غيغابايت أو أكثر', 'مساحة فارغة 1 غيغابايت'],
+  en: ['Windows 10 or 11, 32- or 64-bit (one file for both)', '4 GB RAM or more', '1 GB free disk space'],
 };
 
 // Screenshots live in static/shots/<slug>/<lang>-<f>.png, captured from the running apps on seeded demo
