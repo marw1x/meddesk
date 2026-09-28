@@ -156,8 +156,8 @@ function footer(L, base) {
 </body></html>`;
 }
 
-function stepsHtml(L) {
-  return `<div class="steps">${S.steps.map((s, i) => `
+function stepsHtml(L, list = S.steps, cls = '') {
+  return `<div class="steps${cls}">${list.map((s, i) => `
     <div class="step"><span class="n num">${i + 1}</span>
       <h3>${t(s.t, L.code)}</h3><p>${t(s.b, L.code)}</p></div>`).join('')}</div>`;
 }
@@ -239,7 +239,7 @@ function productPage(L, b, built) {
       ${linkFor(p, b.apk)
         ? `<a class="btn btn-ghost" href="${linkFor(p, b.apk)}" download>${icon('phone')}${t(u.androidCta, l)}<span class="num sz">${mb(b.apk.size)}</span></a>`
         : `<span class="btn" aria-disabled="true">${icon('phone')}${t(u.androidCta, l)}</span>`}
-      <p>${t(u.androidHint, l)}</p>
+      <p>${t(u.androidHint, l)} <a href="#android-install">${t(u.androidHow, l)}</a></p>
     </div>` : ''}
     <div class="buy">
       <a class="btn btn-ghost" href="${waLink(buyMsg(p, l))}" target="_blank" rel="noopener">${icon('key')}${t(u.buyCta, l)}</a>
@@ -283,7 +283,13 @@ function productPage(L, b, built) {
     <div class="sec-head"><h2>${t(u.installTitle, l)}</h2><p>${t(u.installBody, l)}</p></div>
     ${stepsHtml(L)}
   </div></section>
-
+${b.apk ? `
+  <section id="android-install"><div class="wrap">
+    <div class="sec-head"><h2>${t(u.androidInstallTitle, l)}</h2><p>${t(u.androidInstallBody, l)}</p></div>
+    ${stepsHtml(L, S.androidSteps, ' four')}
+    <p class="anote">${icon('phone')}<span>${t(u.androidNote, l)}</span></p>
+  </div></section>
+` : ''}
   <section><div class="wrap">
     <div class="sec-head"><h2>${t(u.otherProducts, l)}</h2></div>
     <div class="others">${S.products.filter((o) => o.slug !== p.slug).map((o) => `

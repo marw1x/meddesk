@@ -58,8 +58,18 @@ const ui = {
   forWindows: { ar: 'ويندوز', en: 'Windows' },
   androidCta: { ar: 'تحميل تطبيق أندرويد', en: 'Download the Android app' },
   androidHint: {
-    ar: 'للتابلت أو الموبايل. بعد التحميل افتح الملف واسمح بالتثبيت من هذا المصدر إن طُلب منك.',
-    en: 'For tablet or phone. After downloading, open the file and allow installs from this source if asked.',
+    ar: 'للتابلت أو الموبايل. حمّله من الجهاز نفسه، وسيطلب أندرويد منك السماح بالتثبيت مرة واحدة.',
+    en: 'For tablet or phone. Download it on the device itself; Android will ask you to allow the install once.',
+  },
+  androidHow: { ar: 'طريقة تثبيت تطبيق أندرويد', en: 'How to install the Android app' },
+  androidInstallTitle: { ar: 'تثبيت تطبيق أندرويد', en: 'Installing the Android app' },
+  androidInstallBody: {
+    ar: 'التطبيق لا يأتي من متجر Google Play، لذلك يسألك أندرويد مرتين قبل تثبيته. هذا طبيعي لأي تطبيق من خارج المتجر، وليس تحذيراً من فيروس.',
+    en: 'The app does not come from the Google Play store, so Android asks twice before installing it. That happens to any app from outside the store; it is not a virus warning.',
+  },
+  androidNote: {
+    ar: 'بعد التثبيت يمكنك إطفاء «السماح من هذا المصدر» مرة ثانية من الإعدادات. بعض الأجهزة (مثل شاومي وسامسونج) تعرض فحصاً خاصاً بها بأسماء أزرار مختلفة قليلاً: اختر المتابعة أو التثبيت. وإذا تعذّر عليك شيء، راسلني وسأساعدك خطوة بخطوة.',
+    en: 'After installing you can switch "Allow from this source" off again in Settings. Some phones (Xiaomi, Samsung) show their own scan with slightly different button names: choose continue or install. If anything gets stuck, message me and I will walk you through it.',
   },
   notReady: { ar: 'رابط التحميل قيد التجهيز', en: 'Download link coming soon' },
   version: { ar: 'الإصدار', en: 'Version' },
@@ -133,6 +143,39 @@ const steps = [
   },
 ];
 
+// Installing the APK: Android asks twice for any app from outside Google Play (unknown source, then Play Protect).
+// Button names are quoted as they appear on Arabic and English Android.
+const androidSteps = [
+  {
+    t: { ar: 'نزّل التطبيق على الجهاز نفسه', en: 'Download it on the device itself' },
+    b: {
+      ar: 'افتح هذه الصفحة من التابلت أو الموبايل واضغط «تحميل تطبيق أندرويد». إذا قال المتصفح إن الملف قد يكون ضاراً، اختر «التنزيل على أي حال».',
+      en: 'Open this page on the tablet or phone and press "Download the Android app". If the browser says the file might be harmful, choose "Download anyway".',
+    },
+  },
+  {
+    t: { ar: 'اسمح بالتثبيت من هذا المصدر', en: 'Allow installs from this source' },
+    b: {
+      ar: 'افتح الملف من الإشعارات أو من «التنزيلات». سيقول أندرويد إن التثبيت من هذا المصدر غير مسموح: اضغط «الإعدادات»، فعّل «السماح من هذا المصدر»، ثم ارجع للخلف.',
+      en: 'Open the file from the notification or from Downloads. Android says installs from this source are not allowed: tap "Settings", switch on "Allow from this source", then go back.',
+    },
+  },
+  {
+    t: { ar: 'مرّ من فحص Play Protect', en: 'Get past the Play Protect scan' },
+    b: {
+      ar: 'اضغط «تثبيت». إذا عرض Play Protect فحص التطبيق، اضغط «فحص التطبيق» وانتظر ثوانٍ ثم «تثبيت». وإذا ظهر «تم الحظر بواسطة Play Protect»، اضغط «مزيد من التفاصيل» ثم «التثبيت على أي حال».',
+      en: 'Tap "Install". If Play Protect offers to scan the app, tap "Scan app", wait a few seconds, then "Install". If it says "Blocked by Play Protect", tap "More details" then "Install anyway".',
+    },
+  },
+  {
+    t: { ar: 'افتح التطبيق', en: 'Open the app' },
+    b: {
+      ar: 'اضغط «فتح». ليتصل بكمبيوتر العيادة، يجب أن يكون التابلت على شبكة الواي فاي نفسها المتصل بها الكمبيوتر.',
+      en: 'Tap "Open". To connect to the clinic computer, the tablet must be on the same Wi-Fi network as the computer.',
+    },
+  },
+];
+
 const faq = [
   {
     q: { ar: 'هل أحتاج إنترنت لتشغيل البرنامج؟', en: 'Do I need internet to run it?' },
@@ -160,6 +203,13 @@ const faq = [
     a: {
       ar: 'نعم في أسنان وجاينو ديسك وراي ديسك: لكل منها تطبيق أندرويد يتصل بكمبيوتر العيادة عبر شبكة العيادة، بدون إنترنت. كلينك ديسك يعمل على كمبيوتر ويندوز.',
       en: 'Yes for Asnaan, GynoDesk and RayDesk: each has an Android app that connects to the clinic computer over the clinic network, with no internet. Clinic Desk runs on Windows.',
+    },
+  },
+  {
+    q: { ar: 'أندرويد يقول إن التطبيق غير آمن أو محظور. ماذا أفعل؟', en: 'Android says the app is unsafe or blocked. What do I do?' },
+    a: {
+      ar: 'أندرويد يسأل هكذا عن أي تطبيق لا يأتي من متجر Google Play، وليس لأنه وجد فيروساً. فعّل «السماح من هذا المصدر» عندما يطلب ذلك، وعند Play Protect اختر «فحص التطبيق» ثم «تثبيت»، أو «مزيد من التفاصيل» ثم «التثبيت على أي حال». الخطوات كاملة في صفحة كل برنامج تحت «تثبيت تطبيق أندرويد».',
+      en: 'Android asks this about any app that does not come from the Google Play store, not because it found a virus. Switch on "Allow from this source" when asked, and at Play Protect choose "Scan app" then "Install", or "More details" then "Install anyway". The full steps are on each product page under "Installing the Android app".',
     },
   },
   {
@@ -310,4 +360,4 @@ const products = [
   },
 ];
 
-module.exports = { brand, ui, why, steps, faq, winReq, products };
+module.exports = { brand, ui, why, steps, androidSteps, faq, winReq, products };

@@ -286,7 +286,17 @@ html[dir="ltr"] .pcard { --go-dx: 4px; }
 }
 .step h3 { margin: 14px 0 6px; font-size: 20px; letter-spacing: -.02em; }
 .step p { margin: 0; color: var(--dim); font-size: 16px; }
-@media (max-width: 760px) { .steps { grid-template-columns: 1fr; gap: 36px; } }
+/* the Android guide has four steps: four across, two by two on a tablet, one column on a phone */
+.steps.four { grid-template-columns: repeat(4, 1fr); gap: 28px 24px; }
+.steps.four .step p { font-size: 15px; line-height: 1.75; }
+@media (max-width: 1060px) { .steps.four { grid-template-columns: repeat(2, 1fr); row-gap: 44px; } }
+@media (max-width: 760px) { .steps, .steps.four { grid-template-columns: 1fr; gap: 36px; } }
+.anote {
+  display: flex; gap: 12px; align-items: flex-start; margin: 40px 0 0; max-width: 78ch;
+  color: var(--dim); font-size: 15px; line-height: 1.75;
+}
+.anote svg { width: 20px; height: 20px; flex: none; margin-top: 3px; color: var(--accent-text); }
+.dlbox .android p a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 
 /* ---------- faq ---------- */
 .faq { border-block-start: 1px solid var(--line); }
