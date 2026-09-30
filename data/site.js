@@ -247,6 +247,7 @@ const winReq = {
 const products = [
   {
     slug: 'asnaan',
+    updates: true, // installed apps update themselves from the downloads site (tools/update-files.js)
     dir: 'dental-app',
     exeName: 'Asnaan Setup',
     apk: { dir: 'dental-app/dist', pattern: '^Asnaan-(\\d+\\.\\d+\\.\\d+)\\.apk$' },
@@ -276,6 +277,7 @@ const products = [
   },
   {
     slug: 'gynodesk',
+    updates: true, // installed apps update themselves from the downloads site (tools/update-files.js)
     dir: 'gyno-clinic-app',
     exeName: 'GynoDesk Setup',
     apk: { dir: 'gyno-clinic-app/mobile/dist', pattern: '^GynoDesk-(\\d+\\.\\d+\\.\\d+)\\.apk$' },
@@ -305,6 +307,7 @@ const products = [
   },
   {
     slug: 'clinic-desk',
+    updates: true, // installed apps update themselves from the downloads site (tools/update-files.js)
     dir: 'general-clinic-app',
     exeName: 'Clinic Desk Setup',
     logo: 'general-clinic-app/build/logo.png',
@@ -332,6 +335,7 @@ const products = [
   },
   {
     slug: 'raydesk',
+    updates: true, // installed apps update themselves from the downloads site (tools/update-files.js)
     dir: 'xray-desk',
     exeName: 'RayDesk Setup',
     apk: { dir: 'xray-desk/dist', pattern: '^RayDesk (\\d+\\.\\d+\\.\\d+)\\.apk$' },

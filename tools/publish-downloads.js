@@ -18,6 +18,7 @@ const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { dlName } = require('./dl-names');
+const { layUpdateFiles } = require('./update-files');
 
 const ROOT = path.join(__dirname, '..');
 const HOME = path.join(ROOT, '..');
@@ -89,6 +90,7 @@ for (const { p, files } of plan) {
   fs.mkdirSync(path.join(STAGE, p.slug), { recursive: true });
   manifest[p.slug] = files.map((f) => ({ name: f.name, version: f.version, size: f.size }));
   for (const f of files) fs.copyFileSync(f.full, path.join(STAGE, p.slug, f.name));
+  if (p.updates) { const u = layUpdateFiles(p, files, STAGE, ROOT); if (u) console.log(`${p.name.en} updates: ${u}`); }
 }
 fs.writeFileSync(path.join(STAGE, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
 fs.writeFileSync(path.join(STAGE, '.nojekyll'), '');
