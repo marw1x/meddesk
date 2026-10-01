@@ -6,29 +6,27 @@ The site links to the copies on https://marw1x.github.io/meddesk-downloads/ (32-
 published with `node tools/publish-downloads.js`, because GitHub Releases downloads are blocked in Syria.
 The unified installers below stay on GitHub Releases for anyone outside Syria (`node release.js`).
 
-## Asnaan - tag: asnaan-v1.0.3
+## Asnaan - tag: asnaan-v1.1.1
 
   from  C:\Users\Marwan\dental-app\dist
 
-  [win] Asnaan Setup 1.0.3.exe   (184 MB)   32- and 64-bit in one
-  [apk] Asnaan-1.0.3.apk   (76 MB)   from C:\Users\Marwan\dental-app\dist
+  [apk] Asnaan-1.1.1.apk   (76 MB)   from C:\Users\Marwan\dental-app\dist
 
-## GynoDesk - tag: gynodesk-v1.0.34
+## GynoDesk - tag: gynodesk-v1.0.36
 
   from  C:\Users\Marwan\gyno-clinic-app\dist
 
-  [win] GynoDesk Setup 1.0.34.exe   (190 MB)   32- and 64-bit in one
-  [apk] GynoDesk-1.0.34.apk   (25 MB)   from C:\Users\Marwan\gyno-clinic-app\mobile\dist
+  [win] GynoDesk Setup 1.0.36.exe   (189 MB)   32- and 64-bit in one
+  [apk] GynoDesk-1.0.36.apk   (25 MB)   from C:\Users\Marwan\gyno-clinic-app\mobile\dist
 
-## Clinic Desk - tag: clinic-desk-v1.4.1
+## Clinic Desk - tag: clinic-desk-v1.5.1
 
   from  C:\Users\Marwan\general-clinic-app\dist
 
-  [win] Clinic Desk Setup 1.4.1.exe   (172 MB)   32- and 64-bit in one
+  [win] Clinic Desk Setup 1.5.1.exe   (172 MB)   32- and 64-bit in one
 
-## RayDesk - tag: raydesk-v1.0.1
+## RayDesk - tag: raydesk-v1.1.1
 
   from  C:\Users\Marwan\xray-desk\dist
 
-  [win] RayDesk Setup 1.0.1.exe   (170 MB)   32- and 64-bit in one
-  [apk] RayDesk 1.0.1.apk   (68 MB)   from C:\Users\Marwan\xray-desk\dist
+  [apk] RayDesk 1.1.1.apk   (68 MB)   from C:\Users\Marwan\xray-desk\dist

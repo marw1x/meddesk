@@ -11,10 +11,10 @@
   ],
   "baseUrl": "",
   "tags": {
-    "asnaan": "asnaan-v1.0.3",
-    "gynodesk": "gynodesk-v1.0.34",
-    "clinic-desk": "clinic-desk-v1.4.1",
-    "raydesk": "raydesk-v1.0.1"
+    "asnaan": "asnaan-v1.1.1",
+    "gynodesk": "gynodesk-v1.0.36",
+    "clinic-desk": "clinic-desk-v1.5.1",
+    "raydesk": "raydesk-v1.1.1"
   },
   "released": {
     "asnaan": true,
@@ -27,45 +27,45 @@
     "files": {
       "asnaan": [
         {
-          "name": "Asnaan-Setup-1.0.3.exe",
-          "version": "1.0.3",
-          "size": 90923867
+          "name": "Asnaan-Setup-1.1.1.exe",
+          "version": "1.1.1",
+          "size": 90854827
         },
         {
-          "name": "Asnaan-1.0.3.apk",
-          "version": "1.0.3",
-          "size": 79770236
+          "name": "Asnaan-1.1.1.apk",
+          "version": "1.1.1",
+          "size": 79816976
         }
       ],
       "gynodesk": [
         {
-          "name": "GynoDesk-Setup-1.0.34.exe",
-          "version": "1.0.34",
-          "size": 103502510
+          "name": "GynoDesk-Setup-1.0.36.exe",
+          "version": "1.0.36",
+          "size": 103477871
         },
         {
-          "name": "GynoDesk-1.0.34.apk",
-          "version": "1.0.34",
-          "size": 25736676
+          "name": "GynoDesk-1.0.36.apk",
+          "version": "1.0.36",
+          "size": 25751931
         }
       ],
       "clinic-desk": [
         {
-          "name": "ClinicDesk-Setup-1.4.1.exe",
-          "version": "1.4.1",
-          "size": 84740996
+          "name": "ClinicDesk-Setup-1.5.1.exe",
+          "version": "1.5.1",
+          "size": 84707549
         }
       ],
       "raydesk": [
         {
-          "name": "RayDesk-Setup-1.0.1.exe",
-          "version": "1.0.1",
-          "size": 83447210
+          "name": "RayDesk-Setup-1.1.1.exe",
+          "version": "1.1.1",
+          "size": 83413778
         },
         {
-          "name": "RayDesk-1.0.1.apk",
-          "version": "1.0.1",
-          "size": 71781399
+          "name": "RayDesk-1.1.1.apk",
+          "version": "1.1.1",
+          "size": 71788643
         }
       ]
     }
