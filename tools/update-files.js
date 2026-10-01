@@ -10,6 +10,11 @@
 // The key (update-signing-key.pem) lives outside every repo: C:\Users\Marwan\meddesk-keys, or MEDDESK_UPDATE_KEY.
 // Without it no updates/<slug>.json is written and installed apps simply see nothing new.
 //
+// minHost (per platform): the oldest main-device version this update can work with. A device that follows another
+// one (reception) waits only until the main device runs at least that. Default: the same major.minor line (x.y.0), so
+// patch releases never hold anyone back; set "minHost": { "<slug>": "1.2.0" } in data/downloads.json when a release
+// changes what the devices say to each other.
+//
 // Holding an update back: put the product's slug in "updateHold" in data/downloads.json. Its installer still goes
 // on the site for new customers, but installed apps are told there is nothing new.
 const crypto = require('crypto');
@@ -25,10 +30,12 @@ function layUpdateFiles(p, files, stage, root) {
   const out = path.join(stage, p.slug);
   const exe = files.find((f) => /\.exe$/i.test(f.name));
   const apk = files.find((f) => /\.apk$/i.test(f.name));
+  const dlCfg = JSON.parse(fs.readFileSync(path.join(root, 'data', 'downloads.json'), 'utf8'));
+  const minHostFor = (v) => (dlCfg.minHost && dlCfg.minHost[p.slug]) || v.split('.').slice(0, 2).concat('0').join('.');
   const payload = { product: p.slug, date: new Date().toISOString() };
   if (exe) {
     const sha = sha512(exe.full);
-    payload.win = { version: exe.version, file: exe.name, sha512: sha, size: exe.size };
+    payload.win = { version: exe.version, file: exe.name, sha512: sha, size: exe.size, minHost: minHostFor(exe.version) };
     fs.writeFileSync(path.join(out, 'latest.yml'),
       `version: ${exe.version}\nfiles:\n  - url: ${exe.name}\n    sha512: ${sha}\n    size: ${exe.size}\npath: ${exe.name}\nsha512: ${sha}\nreleaseDate: '${payload.date}'\n`);
     // blockmaps: this version's (built next to the installer) is kept in data/blockmaps for later updates to diff against
@@ -46,7 +53,7 @@ function layUpdateFiles(p, files, stage, root) {
     for (const n of kept.slice(-KEEP_BLOCKMAPS)) fs.copyFileSync(path.join(arch, n), path.join(out, n));
   }
   // md5: the tablets check it natively (fast); Android also insists the APK carries the app's own signing key
-  if (apk) payload.android = { version: apk.version, file: apk.name, sha512: sha512(apk.full), md5: crypto.createHash('md5').update(fs.readFileSync(apk.full)).digest('hex'), size: apk.size };
+  if (apk) payload.android = { version: apk.version, file: apk.name, sha512: sha512(apk.full), md5: crypto.createHash('md5').update(fs.readFileSync(apk.full)).digest('hex'), size: apk.size, minHost: minHostFor(apk.version) };
 
   const dl = JSON.parse(fs.readFileSync(path.join(root, 'data', 'downloads.json'), 'utf8'));
   if ((dl.updateHold || []).includes(p.slug)) { delete payload.win; delete payload.android; payload.hold = true; }

@@ -6,19 +6,19 @@ The site links to the copies on https://marw1x.github.io/meddesk-downloads/ (32-
 published with `node tools/publish-downloads.js`, because GitHub Releases downloads are blocked in Syria.
 The unified installers below stay on GitHub Releases for anyone outside Syria (`node release.js`).
 
-## Asnaan - tag: asnaan-v1.0.1
+## Asnaan - tag: asnaan-v1.0.3
 
   from  C:\Users\Marwan\dental-app\dist
 
-  [win] Asnaan Setup 1.0.1.exe   (184 MB)   32- and 64-bit in one
-  [apk] Asnaan-1.0.2.apk   (76 MB)   from C:\Users\Marwan\dental-app\dist
+  [win] Asnaan Setup 1.0.3.exe   (184 MB)   32- and 64-bit in one
+  [apk] Asnaan-1.0.3.apk   (76 MB)   from C:\Users\Marwan\dental-app\dist
 
-## GynoDesk - tag: gynodesk-v1.0.33
+## GynoDesk - tag: gynodesk-v1.0.34
 
   from  C:\Users\Marwan\gyno-clinic-app\dist
 
-  [win] GynoDesk Setup 1.0.33.exe   (190 MB)   32- and 64-bit in one
-  [apk] GynoDesk-1.0.32.apk   (25 MB)   from C:\Users\Marwan\gyno-clinic-app\mobile\dist
+  [win] GynoDesk Setup 1.0.34.exe   (190 MB)   32- and 64-bit in one
+  [apk] GynoDesk-1.0.34.apk   (25 MB)   from C:\Users\Marwan\gyno-clinic-app\mobile\dist
 
 ## Clinic Desk - tag: clinic-desk-v1.4.1
 
