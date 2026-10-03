@@ -12,12 +12,12 @@ The unified installers below stay on GitHub Releases for anyone outside Syria (`
 
   [apk] Asnaan-1.1.1.apk   (76 MB)   from C:\Users\Marwan\dental-app\dist
 
-## GynoDesk - tag: gynodesk-v1.0.36
+## GynoDesk - tag: gynodesk-v1.0.37
 
   from  C:\Users\Marwan\gyno-clinic-app\dist
 
-  [win] GynoDesk Setup 1.0.36.exe   (189 MB)   32- and 64-bit in one
-  [apk] GynoDesk-1.0.36.apk   (25 MB)   from C:\Users\Marwan\gyno-clinic-app\mobile\dist
+  [win] GynoDesk Setup 1.0.37.exe   (189 MB)   32- and 64-bit in one
+  [apk] GynoDesk-1.0.37.apk   (25 MB)   from C:\Users\Marwan\gyno-clinic-app\mobile\dist
 
 ## Clinic Desk - tag: clinic-desk-v1.5.1
 
