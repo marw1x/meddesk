@@ -13,7 +13,7 @@
   "tags": {
     "asnaan": "asnaan-v1.1.1",
     "gynodesk": "gynodesk-v1.0.38",
-    "clinic-desk": "clinic-desk-v1.5.1",
+    "clinic-desk": "clinic-desk-v1.6.0",
     "raydesk": "raydesk-v1.1.1"
   },
   "released": {
@@ -51,9 +51,9 @@
       ],
       "clinic-desk": [
         {
-          "name": "ClinicDesk-Setup-1.5.1.exe",
-          "version": "1.5.1",
-          "size": 84707549
+          "name": "ClinicDesk-Setup-1.6.0.exe",
+          "version": "1.6.0",
+          "size": 85019551
         }
       ],
       "raydesk": [
