@@ -12,7 +12,7 @@
   "baseUrl": "",
   "tags": {
     "asnaan": "asnaan-v1.1.1",
-    "gynodesk": "gynodesk-v1.0.37",
+    "gynodesk": "gynodesk-v1.0.38",
     "clinic-desk": "clinic-desk-v1.5.1",
     "raydesk": "raydesk-v1.1.1"
   },
@@ -39,14 +39,14 @@
       ],
       "gynodesk": [
         {
-          "name": "GynoDesk-Setup-1.0.37.exe",
-          "version": "1.0.37",
-          "size": 103481544
+          "name": "GynoDesk-Setup-1.0.38.exe",
+          "version": "1.0.38",
+          "size": 103504925
         },
         {
-          "name": "GynoDesk-1.0.37.apk",
-          "version": "1.0.37",
-          "size": 25766944
+          "name": "GynoDesk-1.0.38.apk",
+          "version": "1.0.38",
+          "size": 25778205
         }
       ],
       "clinic-desk": [
