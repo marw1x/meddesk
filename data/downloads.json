@@ -27,40 +27,40 @@
     "files": {
       "asnaan": [
         {
-          "name": "Asnaan-Setup-1.1.1.exe",
-          "version": "1.1.1",
-          "size": 90854827
+          "name": "Asnaan-Setup-1.1.2.exe",
+          "version": "1.1.2",
+          "size": 90857856
         },
         {
-          "name": "Asnaan-1.1.1.apk",
-          "version": "1.1.1",
-          "size": 79816976
+          "name": "Asnaan-1.1.2.apk",
+          "version": "1.1.2",
+          "size": 79818956
         }
       ],
       "gynodesk": [
         {
-          "name": "GynoDesk-Setup-1.0.38.exe",
-          "version": "1.0.38",
-          "size": 103504925
+          "name": "GynoDesk-Setup-1.0.40.exe",
+          "version": "1.0.40",
+          "size": 103530194
         },
         {
-          "name": "GynoDesk-1.0.39.apk",
-          "version": "1.0.39",
-          "size": 25784844
+          "name": "GynoDesk-1.0.40.apk",
+          "version": "1.0.40",
+          "size": 25785298
         }
       ],
       "clinic-desk": [
         {
-          "name": "ClinicDesk-Setup-1.6.0.exe",
-          "version": "1.6.0",
-          "size": 85019551
+          "name": "ClinicDesk-Setup-1.6.1.exe",
+          "version": "1.6.1",
+          "size": 85019957
         }
       ],
       "raydesk": [
         {
-          "name": "RayDesk-Setup-1.1.1.exe",
-          "version": "1.1.1",
-          "size": 83413778
+          "name": "RayDesk-Setup-1.1.2.exe",
+          "version": "1.1.2",
+          "size": 83414157
         },
         {
           "name": "RayDesk-1.1.1.apk",
