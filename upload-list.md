@@ -10,32 +10,32 @@ The unified installers below stay on GitHub Releases for anyone outside Syria (`
 
   from  C:\Users\Marwan\dental-app\dist
 
-  [apk] Asnaan-1.1.2.apk   (76 MB)   from C:\Users\Marwan\dental-app\dist
+  [apk] Asnaan-1.1.3.apk   (76 MB)   from C:\Users\Marwan\dental-app\dist
 
-  WARNING: the tag says a different version than the installer (1.1.2).
+  WARNING: the tag says a different version than the installer (1.1.3).
 
 ## GynoDesk - tag: gynodesk-v1.0.38
 
   from  C:\Users\Marwan\gyno-clinic-app\dist
 
-  [win] GynoDesk Setup 1.0.40.exe   (190 MB)   32- and 64-bit in one
-  [apk] GynoDesk-1.0.40.apk   (25 MB)   from C:\Users\Marwan\gyno-clinic-app\mobile\dist
+  [win] GynoDesk Setup 1.0.41.exe   (190 MB)   32- and 64-bit in one
+  [apk] GynoDesk-1.0.41.apk   (25 MB)   from C:\Users\Marwan\gyno-clinic-app\mobile\dist
 
-  WARNING: the tag says a different version than the installer (1.0.40).
+  WARNING: the tag says a different version than the installer (1.0.41).
 
 ## Clinic Desk - tag: clinic-desk-v1.6.0
 
   from  C:\Users\Marwan\general-clinic-app\dist
 
-  [win] Clinic Desk Setup 1.6.1.exe   (173 MB)   32- and 64-bit in one
+  [win] Clinic Desk Setup 1.6.2.exe   (173 MB)   32- and 64-bit in one
 
-  WARNING: the tag says a different version than the installer (1.6.1).
+  WARNING: the tag says a different version than the installer (1.6.2).
 
 ## RayDesk - tag: raydesk-v1.1.1
 
   from  C:\Users\Marwan\xray-desk\dist
 
-  [win] RayDesk Setup 1.1.2.exe   (170 MB)   32- and 64-bit in one
+  [win] RayDesk Setup 1.1.3.exe   (170 MB)   32- and 64-bit in one
   [apk] RayDesk 1.1.1.apk   (68 MB)   from C:\Users\Marwan\xray-desk\dist
 
-  WARNING: the tag says a different version than the installer (1.1.2).
+  WARNING: the tag says a different version than the installer (1.1.3).
