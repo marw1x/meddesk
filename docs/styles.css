@@ -408,3 +408,14 @@ footer a:hover { color: var(--text); text-decoration: underline; }
 .ocard img { width: 40px; height: 40px; border-radius: 12px; flex: none; }
 .ocard b { display: block; font-size: 17px; }
 .ocard span { color: var(--dim); font-size: 14.5px; }
+
+/* ---------- tutorials page ---------- */
+.tuts { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+.tut { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 16px; display: flex; flex-direction: column; gap: 14px; scroll-margin-top: 84px; }
+.tut:target { outline: 2px solid var(--accent); outline-offset: 3px; }
+.tut-head { display: flex; align-items: center; gap: 12px; }
+.tut-head img { width: 44px; height: 44px; border-radius: 12px; }
+.tut-head h3 { margin: 0; }
+.tut video { width: 100%; aspect-ratio: 9 / 16; border-radius: 10px; background: #000; object-fit: cover; }
+.tut-actions { display: flex; flex-direction: column; gap: 8px; }
+.tut-actions .btn { justify-content: center; }

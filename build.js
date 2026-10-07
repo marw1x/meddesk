@@ -153,6 +153,7 @@ function nav(L, base) {
     <a href="${base}index.html#why" data-secondary>${t(u.navWhy, L.code)}</a>
     <a href="${base}index.html#install" data-secondary>${t(u.navInstall, L.code)}</a>
     <a href="${base}index.html#android-install" data-secondary>${t(u.navAndroid, L.code)}</a>
+    <a href="${base}tutorials.html">${t(u.navTutorials, L.code)}</a>
     <a href="${base}index.html#faq" data-secondary>${t(u.navHelp, L.code)}</a>
   </nav>
   <a class="lang" href="${swapHref}" hreflang="${L.other}">${t(u.langSwitch, L.code)}</a>
@@ -184,6 +185,36 @@ function androidGuide(L) {
     <p class="anote">${icon('phone')}<span>${t(u.androidNote, l)}</span></p>
   </div></section>
 `;
+}
+
+// ---------- tutorials ----------
+// One short video per app (rendered by marketing-kit/reels, hosted next to the installers). Each section has an id
+// = the product slug, so a link like tutorials.html#asnaan opens straight on that app's video.
+const TUT_BASE = 'https://marw1x.github.io/meddesk-downloads/tutorials';
+const SITE_URL = 'https://marw1x.github.io/meddesk';
+function tutorialsPage(L) {
+  const l = L.code, u = S.ui, base = L.base;
+  const title = `${t(u.tutTitle, l)} - ${S.brand.name[l]}`;
+  return head(L, title, u.tutBody[l], base, 'tutorials.html') + nav(L, base) + `
+<main>
+  <section><div class="wrap">
+    <div class="sec-head"><h2>${t(u.tutTitle, l)}</h2><p>${t(u.tutBody, l)}</p></div>
+    <div class="tuts">${S.products.map((p) => {
+      const page = `${SITE_URL}/${l === 'ar' ? '' : 'en/'}tutorials.html#${p.slug}`;
+      const msg = u.tutShareMsg[l].replace('{name}', p.name[l]) + '\n' + page;
+      return `
+      <article class="tut" id="${p.slug}" data-p="${p.slug}">
+        <div class="tut-head"><img src="${base}assets/logos/${p.slug}.png" alt=""><div><h3>${t(p.name, l)}</h3><div class="aud">${t(p.audience, l)}</div></div></div>
+        <video controls playsinline preload="none" poster="${base}assets/tutorials/${p.slug}.jpg" src="${TUT_BASE}/${p.slug}.mp4"></video>
+        <div class="tut-actions">
+          <a class="btn btn-ghost" href="${TUT_BASE}/${p.slug}.mp4" download>${icon('download')}${t(u.tutDownload, l)}</a>
+          <a class="btn btn-ghost" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${icon('whatsapp')}${t(u.tutShare, l)}</a>
+        </div>
+      </article>`;
+    }).join('')}</div>
+    <p class="anote">${icon('whatsapp')}<span>${t(u.tutHelp, l)} <a href="${waLink(waGeneral[l])}" target="_blank" rel="noopener"><span class="num">${S.brand.whatsapp}</span></a></span></p>
+  </div></section>
+</main>` + footer(L, base);
 }
 
 // ---------- home ----------
@@ -343,6 +374,7 @@ function copyAssets(built) {
     for (const f of fs.readdirSync(path.join(SHOTS, b.p.slug))) copy(path.join(SHOTS, b.p.slug, f), path.join(A, 'shots', b.p.slug, f));
   }
   copy(path.join(ROOT, 'static', 'styles.css'), path.join(DIST, 'styles.css'));
+  for (const b of built) { const pst = path.join(ROOT, 'static', 'tutorials', `${b.p.slug}.jpg`); if (fs.existsSync(pst)) copy(pst, path.join(A, 'tutorials', `${b.p.slug}.jpg`)); }
   // old URLs of retired pages forward to their replacement instead of a 404
   copy(path.join(ROOT, 'static', 'redirects', 'clinic-manager.html'), path.join(DIST, 'clinic-manager.html'));
   copy(path.join(ROOT, 'static', 'redirects', 'en', 'clinic-manager.html'), path.join(DIST, 'en', 'clinic-manager.html'));
@@ -361,6 +393,8 @@ for (const L of LANGS) {
   fs.mkdirSync(dir, { recursive: true });
   L.page = 'index.html';
   fs.writeFileSync(path.join(dir, 'index.html'), homePage(L, byslug), 'utf8');
+  L.page = 'tutorials.html';
+  fs.writeFileSync(path.join(dir, 'tutorials.html'), tutorialsPage(L), 'utf8');
   for (const b of built) {
     L.page = `${b.p.slug}.html`;
     fs.writeFileSync(path.join(dir, `${b.p.slug}.html`), productPage(L, b, byslug), 'utf8');
