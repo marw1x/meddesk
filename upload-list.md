@@ -10,9 +10,9 @@ The unified installers below stay on GitHub Releases for anyone outside Syria (`
 
   from  C:\Users\Marwan\dental-app\dist
 
-  [apk] Asnaan-1.1.3.apk   (76 MB)   from C:\Users\Marwan\dental-app\dist
+  [apk] Asnaan-1.2.0.apk   (77 MB)   from C:\Users\Marwan\dental-app\dist
 
-  WARNING: the tag says a different version than the installer (1.1.3).
+  WARNING: the tag says a different version than the installer (1.2.0).
 
 ## GynoDesk - tag: gynodesk-v1.0.38
 
@@ -27,9 +27,9 @@ The unified installers below stay on GitHub Releases for anyone outside Syria (`
 
   from  C:\Users\Marwan\general-clinic-app\dist
 
-  [win] Clinic Desk Setup 1.6.2.exe   (173 MB)   32- and 64-bit in one
+  [win] Clinic Desk Setup 1.7.0.exe   (174 MB)   32- and 64-bit in one
 
-  WARNING: the tag says a different version than the installer (1.6.2).
+  WARNING: the tag says a different version than the installer (1.7.0).
 
 ## RayDesk - tag: raydesk-v1.1.1
 
