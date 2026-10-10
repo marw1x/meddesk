@@ -27,14 +27,14 @@
     "files": {
       "asnaan": [
         {
-          "name": "Asnaan-Setup-1.2.1.exe",
-          "version": "1.2.1",
-          "size": 90903392
+          "name": "Asnaan-Setup-1.2.2.exe",
+          "version": "1.2.2",
+          "size": 103386457
         },
         {
-          "name": "Asnaan-1.2.1.apk",
-          "version": "1.2.1",
-          "size": 80283120
+          "name": "Asnaan-1.2.2.apk",
+          "version": "1.2.2",
+          "size": 87443969
         }
       ],
       "gynodesk": [
@@ -75,6 +75,7 @@
   },
   "pagesArch": {
     "clinic-desk": "x64",
-    "gynodesk": "x64"
+    "gynodesk": "x64",
+    "asnaan": "x64"
   }
 }
