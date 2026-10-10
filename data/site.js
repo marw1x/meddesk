@@ -324,6 +324,8 @@ const products = [
     updates: true, // installed apps update themselves from the downloads site (tools/update-files.js)
     dir: 'general-clinic-app',
     exeName: 'Clinic Desk Setup',
+    // Android (mobile/, from 1.8.1): a clinic on tablets only, or a tablet next to the clinic PC
+    apk: { dir: 'general-clinic-app/mobile/dist', pattern: '^ClinicDesk-(\\d+\\.\\d+\\.\\d+)\\.apk$' },
     logo: 'general-clinic-app/build/logo.png',
     name: { ar: 'كلينك ديسك', en: 'Clinic Desk' },
     audience: { ar: 'كل الاختصاصات', en: 'Every specialty' },
@@ -345,7 +347,7 @@ const products = [
       { icon: 'users', t: { ar: 'غرفة انتظار ومواعيد', en: 'Waiting room and appointments' }, b: { ar: 'من وصل ومن عند الطبيب ومن انتهى، ومواعيد متكررة.', en: 'Who arrived, who is with the doctor, who is done, plus recurring appointments.' } },
       { icon: 'printer', t: { ar: 'طباعة بمعاينة قبلها', en: 'Printing with a preview first' }, b: { ar: 'كل ورقة تُعاين قبل طباعتها، بترويسة عيادتك وخط وحجم تختاره. ومستودع أدوية اختياري إن كانت عيادتك تصرف.', en: 'Every sheet is previewed before it prints, on your letterhead in the font and size you choose. Plus an optional medicine store if you dispense.' } },
     ],
-    extraReq: { ar: ['يمكن ربط جهاز الاستقبال وجهاز الطبيب على شبكة العيادة'], en: ['Reception and doctor computers can be linked over the clinic network'] },
+    extraReq: { ar: ['يمكن ربط جهاز الاستقبال وجهاز الطبيب على شبكة العيادة', 'تطبيق أندرويد للتابلت — يعمل مع الحاسوب أو بالتابلتات وحدها'], en: ['Reception and doctor computers can be linked over the clinic network', 'Android tablet app — with the PC, or tablets only'] },
   },
   {
     slug: 'raydesk',
