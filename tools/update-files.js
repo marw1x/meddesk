@@ -44,7 +44,8 @@ function layUpdateFiles(p, files, stage, root) {
     if (fs.existsSync(bm)) fs.copyFileSync(bm, path.join(arch, exe.name + '.blockmap'));
     else console.log(`  note: no blockmap next to ${path.basename(exe.full)} — PCs will download the whole installer`);
     // also any older ones still in the product's dist folder
-    const re = new RegExp(`^${p.exeName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} (\\d+\\.\\d+\\.\\d+) ia32\\.exe\\.blockmap$`);
+    const archOf = (/ (x64|ia32)\.exe$/.exec(exe.full) || [])[1] || 'ia32';
+    const re = new RegExp(`^${p.exeName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} (\\d+\\.\\d+\\.\\d+) ${archOf}\\.exe\\.blockmap$`);
     const dist = path.join(root, '..', p.dir, 'dist');
     for (const f of fs.existsSync(dist) ? fs.readdirSync(dist) : []) { const m = f.match(re); if (m) { const name = exe.name.replace(exe.version, m[1]) + '.blockmap'; if (!fs.existsSync(path.join(arch, name))) fs.copyFileSync(path.join(dist, f), path.join(arch, name)); } }
     const verOf = (n) => (n.match(/(\d+\.\d+\.\d+)/) || [])[1] || '0.0.0';

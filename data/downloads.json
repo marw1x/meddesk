@@ -39,21 +39,21 @@
       ],
       "gynodesk": [
         {
-          "name": "GynoDesk-Setup-1.0.41.exe",
-          "version": "1.0.41",
-          "size": 103534117
+          "name": "GynoDesk-Setup-1.0.42.exe",
+          "version": "1.0.42",
+          "size": 96142939
         },
         {
-          "name": "GynoDesk-1.0.41.apk",
-          "version": "1.0.41",
-          "size": 25790996
+          "name": "GynoDesk-1.0.42.apk",
+          "version": "1.0.42",
+          "size": 25795383
         }
       ],
       "clinic-desk": [
         {
-          "name": "ClinicDesk-Setup-1.7.0.exe",
-          "version": "1.7.0",
-          "size": 85546907
+          "name": "ClinicDesk-Setup-1.8.0.exe",
+          "version": "1.8.0",
+          "size": 89786131
         }
       ],
       "raydesk": [
@@ -72,5 +72,9 @@
   },
   "minHost": {
     "gynodesk": "1.0.35"
+  },
+  "pagesArch": {
+    "clinic-desk": "x64",
+    "gynodesk": "x64"
   }
 }

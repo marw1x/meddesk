@@ -88,6 +88,9 @@ const configured = Boolean(BASE);
 // data/downloads.json "pages" is written by tools/publish-downloads.js with exactly what was uploaded.
 const { dlName } = require('./tools/dl-names');
 const PAGES = DL.pages && DL.pages.base ? DL.pages : null;
+// Which installer the Pages site serves per product (100 MiB file limit): 32-bit by default, 64-bit where set.
+const pagesArch = (p) => (DL.pagesArch || {})[p.slug] || 'ia32';
+const pagesFile = (b) => (PAGES ? b.inst.files[pagesArch(b.p)] : b.inst.files.all);
 const linkFor = (p, row) => {
   if (PAGES) {
     if (!row) return null;
@@ -275,9 +278,9 @@ ${androidGuide(L)}
 // ---------- product page ----------
 function productPage(L, b, built) {
   const l = L.code, u = S.ui, base = L.base, p = b.p;
-  // Served from GitHub Pages (100 MiB file limit): the 32-bit installer, which also runs on 64-bit Windows.
-  // Without the Pages host, fall back to the unified installer on GitHub Releases.
-  const x64 = PAGES ? b.inst.files.ia32 : b.inst.files.all;
+  // Served from GitHub Pages (100 MiB file limit): the 32-bit installer (also runs on 64-bit Windows), or the 64-bit
+  // one for products listed in pagesArch. Without the Pages host, fall back to the unified installer on GitHub Releases.
+  const x64 = pagesFile(b);
   const href64 = linkFor(p, x64);
   const waMsg = { ar: `مرحباً، أريد تجربة برنامج ${p.name.ar}`, en: `Hello, I would like to try ${p.name.en}` }[l];
   const title = `${p.name[l]} - ${p.audience[l]} | ${S.brand.name[l]}`;
@@ -305,7 +308,7 @@ function productPage(L, b, built) {
     ${!href64 ? `<div class="alt"><a href="${waLink(waMsg)}" target="_blank" rel="noopener">${t(u.heroCta2, l)}</a></div>` : ''}
   </div>`;
 
-  const reqs = [...S.winReq[l], ...(p.extraReq ? p.extraReq[l] : [])];
+  const reqs = [...(PAGES && pagesArch(p) === 'x64' ? S.winReq64[l] : S.winReq[l]), ...(p.extraReq ? p.extraReq[l] : [])];
 
   return head(L, title, p.blurb[l], base, `${p.slug}.html`, p.slug) + nav(L, base) + `
 <main>
@@ -429,7 +432,7 @@ fs.writeFileSync(path.join(ROOT, 'upload-list.md'), lines.join('\n'), 'utf8');
 console.log('docs/ built');
 for (const b of built) {
   const v = b.inst.version || '(no installer found)';
-  const win = PAGES ? b.inst.files.ia32 : b.inst.files.all;
+  const win = pagesFile(b);
   const state = (row) => (linkFor(b.p, row) ? 'linked' : 'NOT UPLOADED - run node tools/publish-downloads.js');
   const files = win ? `win ${mb(win.size)} ${state(win)}${b.apk ? `, apk ${mb(b.apk.size)} ${state(b.apk)}` : ''}` : '-';
   const tag = (DL.tags || {})[b.p.slug] || '';

@@ -244,6 +244,12 @@ const faq = [
   },
 ];
 
+// products served as the 64-bit installer (data/downloads.json pagesArch)
+const winReq64 = {
+  ar: ['ويندوز 10 أو 11، 64 بت', 'ذاكرة 4 غيغابايت أو أكثر', 'مساحة فارغة 1 غيغابايت'],
+  en: ['Windows 10 or 11, 64-bit', '4 GB RAM or more', '1 GB free disk space'],
+};
+
 const winReq = {
   ar: ['ويندوز 10 أو 11، 32 أو 64 بت (ملف واحد للاثنين)', 'ذاكرة 4 غيغابايت أو أكثر', 'مساحة فارغة 1 غيغابايت'],
   en: ['Windows 10 or 11, 32- or 64-bit (one file for both)', '4 GB RAM or more', '1 GB free disk space'],
@@ -373,4 +379,4 @@ const products = [
   },
 ];
 
-module.exports = { brand, ui, why, steps, androidSteps, faq, winReq, products };
+module.exports = { brand, ui, why, steps, androidSteps, faq, winReq, winReq64, products };
